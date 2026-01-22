@@ -1,0 +1,28 @@
+{
+  "name": "tussiesjack-mobile",
+  "version": "1.0.0",
+  "description": "AI-Powered Blackjack Mobile Agent",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.72.0",
+    "expo": "~49.0.0",
+    "@react-native-firebase/app": "^18.0.0",
+    "@react-native-firebase/firestore": "^18.0.0",
+    "@react-native-async-storage/async-storage": "^1.17.0",
+    "zustand": "^4.3.0",
+    "@tensorflow/tfjs": "^4.0.0",
+    "@tensorflow/tfjs-react-native": "^0.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}
