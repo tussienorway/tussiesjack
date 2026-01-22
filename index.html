@@ -3,274 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TussiesJack AI - Card Vision Advisor</title>
+    <title>TussiesJack AI - Mobile Camera</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
-            max-width: 700px;
-            width: 100%;
-        }
-
-        h1 {
-            text-align: center;
-            color: #1f2937;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #6b7280;
-            margin-bottom: 30px;
-        }
-
-        .input-section {
-            margin-bottom: 30px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .input-section input[type="file"],
-        .input-section input[type="text"] {
-            padding: 12px 15px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 1em;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .input-section input[type="file"]::file-selector-button {
-            background: #10b981;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        button {
-            padding: 12px 25px;
-            background: #3b82f6;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #2563eb;
-        }
-
-        button:disabled {
-            background: #9ca3af;
-            cursor: not-allowed;
-        }
-
-        .camera-section {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        video, canvas {
-            border-radius: 10px;
-            width: 100%;
-            max-width: 100%;
-            margin-bottom: 15px;
-            background: #f3f4f6;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .advice-box {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 30px;
-            display: none;
-        }
-
-        .advice-box.show {
-            display: block;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .advice-box h2 {
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .advice-content {
-            line-height: 1.6;
-        }
-
-        .card-analysis {
-            background: #f0fdf4;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            color: #1f2937;
-        }
-
-        .card-analysis strong {
-            color: #059669;
-        }
-
-        .recommendation {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 1.1em;
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .loading {
-            text-align: center;
-            color: #3b82f6;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .loading.show {
-            display: block;
-        }
-
-        .spinner {
-            border: 4px solid #e5e7eb;
-            border-top: 4px solid #3b82f6;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .error.show {
-            display: block;
-        }
-
-        .info {
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 0.95em;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 10px; }
+        .container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); padding: 20px; max-width: 95vw; width: 100%; max-height: 95vh; overflow-y: auto; }
+        h1 { text-align: center; color: #1f2937; margin-bottom: 5px; font-size: 2em; }
+        .subtitle { text-align: center; color: #6b7280; margin-bottom: 15px; font-size: 0.9em; }
+        .tabs { display: flex; gap: 5px; margin-bottom: 20px; }
+        .tab-button { padding: 10px 15px; background: #e5e7eb; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; transition: all 0.3s; }
+        .tab-button.active { background: #3b82f6; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .camera-container { width: 100%; background: #000; border-radius: 15px; overflow: hidden; margin-bottom: 15px; }
+        video { width: 100%; height: auto; display: block; }
+        canvas { display: none; }
+        .button-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 15px; }
+        button { padding: 12px 20px; background: #3b82f6; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1em; transition: all 0.3s; }
+        button:hover { background: #2563eb; }
+        button:disabled { background: #9ca3af; cursor: not-allowed; }
+        .image-preview { width: 100%; border-radius: 15px; margin-bottom: 15px; background: #f3f4f6; }
+        .input-section { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 15px; }
+        input[type="file"] { flex: 1; min-width: 200px; }
+        .advice-box { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 15px; margin-top: 15px; display: none; animation: slideIn 0.3s ease-out; }
+        .advice-box.show { display: block; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .advice-box h2 { margin-bottom: 15px; font-size: 1.3em; }
+        .card-analysis { background: #f0fdf4; padding: 12px; border-radius: 10px; margin-bottom: 12px; color: #1f2937; font-size: 0.95em; }
+        .recommendation { background: rgba(255,255,255,0.2); padding: 12px; border-radius: 10px; font-weight: bold; font-size: 1em; text-align: center; margin-top: 12px; }
+        .loading { text-align: center; color: #3b82f6; margin-top: 15px; display: none; }
+        .loading.show { display: block; }
+        .spinner { border: 4px solid #e5e7eb; border-top: 4px solid #3b82f6; border-radius: 50%; width: 35px; height: 35px; animation: spin 1s linear infinite; margin: 15px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 10px; margin-top: 15px; display: none; font-size: 0.95em; }
+        .error.show { display: block; }
+        .info { background: #dbeafe; color: #1e40af; padding: 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.9em; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🎪 TussiesJack AI</h1>
-        <p class="subtitle">AI Vision-Based Blackjack Decision Advisor</p>
+        <p class="subtitle">Mobile Camera Blackjack Advisor</p>
 
-        <div class="info">
-            📄 <strong>How to use:</strong> Take a photo of your current cards and the dealer's up card, then let AI decide if you should HIT or STAND!
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('camera')">📷 Camera</button>
+            <button class="tab-button" onclick="switchTab('upload')">📁 Upload</button>
         </div>
 
-        <div class="input-section">
-            <input type="file" id="imageInput" accept="image/*" capture="environment">
-            <button onclick="analyzeImage()">Analyze Cards</button>
+        <div class="info">📄 Take a photo of your cards and the dealer's card. AI will instantly tell you to HIT or STAND!</div>
+
+        <!-- CAMERA TAB -->
+        <div id="camera" class="tab-content active">
+            <div class="camera-container">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="button-group">
+                <button onclick="startCamera()">▶️ Start Camera</button>
+                <button onclick="stopCamera()">⏹️ Stop Camera</button>
+                <button onclick="capturePhoto()">📸 Capture</button>
+            </div>
+            <div id="cameraStatus" style="text-align: center; color: #6b7280; font-size: 0.9em; margin-bottom: 15px;"></div>
+        </div>
+
+        <!-- UPLOAD TAB -->
+        <div id="upload" class="tab-content">
+            <div class="input-section">
+                <input type="file" id="imageInput" accept="image/*" capture="environment">
+                <button onclick="analyzeImage()">Analyze</button>
+            </div>
         </div>
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>Analyzing your cards with AI...</p>
+            <p>Analyzing cards...</p>
         </div>
-
         <div class="error" id="error"></div>
-
         <div class="advice-box" id="adviceBox">
-            <h2>🤖 AI Analysis</h2>
+            <h2>🤖 Decision</h2>
             <div id="adviceContent"></div>
         </div>
     </div>
 
     <script>
-        // Initialize with Gemini API
-        const GEMINI_API_KEY = 'AIzaSyBl3HKHqOSEsVS-bXs5_zPQN6S-I7lZqrI'; // Replace with your key
+        const GEMINI_API_KEY = 'AIzaSyBl3HKHqOSEsVS-bXs5_zPQN6S-I7lZqrI';
+        let stream = null;
+        let photoData = null;
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        async function startCamera() {
+            try {
+                const status = document.getElementById('cameraStatus');
+                status.textContent = 'Requesting camera access...';
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } },
+                    audio: false
+                });
+                document.getElementById('video').srcObject = stream;
+                status.textContent = '✅ Camera ready - frame your cards and tap Capture';
+            } catch (error) {
+                document.getElementById('cameraStatus').textContent = '❌ Camera access denied';
+                showError('Camera access required. Please enable camera permission.');
+            }
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+                document.getElementById('cameraStatus').textContent = '';
+            }
+        }
+
+        function capturePhoto() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            if (!video.srcObject) {
+                showError('Camera is not started');
+                return;
+            }
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0);
+            photoData = canvas.toDataURL('image/jpeg').split(',')[1];
+            analyzePhotoData();
+        }
 
         async function analyzeImage() {
             const imageInput = document.getElementById('imageInput');
             const file = imageInput.files[0];
-
             if (!file) {
                 showError('Please select an image first');
                 return;
             }
-
-            // Convert image to base64
             const reader = new FileReader();
             reader.onload = async (e) => {
-                const base64Image = e.target.result.split(',')[1];
-                await analyzeWithGemini(base64Image);
+                photoData = e.target.result.split(',')[1];
+                await analyzePhotoData();
             };
             reader.readAsDataURL(file);
         }
 
-        async function analyzeWithGemini(base64Image) {
+        async function analyzePhotoData() {
             const loading = document.getElementById('loading');
             const errorDiv = document.getElementById('error');
             const adviceBox = document.getElementById('adviceBox');
-
             loading.classList.add('show');
             errorDiv.classList.remove('show');
             adviceBox.classList.remove('show');
@@ -285,45 +169,21 @@
                             contents: [{
                                 parts: [
                                     {
-                                        text: `You are an expert blackjack strategist. Analyze these playing cards in the image and provide a decision. 
-
-Analyze the cards shown and:
-1. Identify all visible cards (both player cards and dealer's up card)
-2. Calculate the total hand value for the player
-3. Apply basic blackjack strategy
-4. Provide a clear recommendation: HIT or STAND
-
-Format your response as:
-PLAYER CARDS: [list cards]
-PLAYER TOTAL: [number]
-DEALER UP CARD: [card]
-RECOMMENDATION: [HIT/STAND]
-REASON: [brief explanation]
-
-If cards are unclear, ask for a better image.`
+                                        text: `Expert blackjack advisor. Analyze the playing cards shown and provide a decision.\n\n1. Identify all visible cards (player's cards + dealer's up card)\n2. Calculate player's hand value\n3. Apply basic blackjack strategy\n4. Give clear recommendation\n\nFormat:\nPLAYER CARDS: [cards]\nPLAYER TOTAL: [number]\nDEALER UP CARD: [card]\nRECOMMENDATION: [HIT/STAND]\nREASON: [explanation]`
                                     },
-                                    {
-                                        inlineData: {
-                                            mimeType: 'image/jpeg',
-                                            data: base64Image
-                                        }
-                                    }
+                                    { inlineData: { mimeType: 'image/jpeg', data: photoData } }
                                 ]
                             }]
                         })
                     }
                 );
-
                 const data = await response.json();
                 loading.classList.remove('show');
-
                 if (data.error) {
-                    showError(`API Error: ${data.error.message}`);
+                    showError(`Error: ${data.error.message}`);
                     return;
                 }
-
-                const analysis = data.contents[0].parts[0].text;
-                displayAdvice(analysis);
+                displayAdvice(data.contents[0].parts[0].text);
             } catch (error) {
                 loading.classList.remove('show');
                 showError(`Error: ${error.message}`);
@@ -333,36 +193,23 @@ If cards are unclear, ask for a better image.`
         function displayAdvice(analysis) {
             const adviceBox = document.getElementById('adviceBox');
             const adviceContent = document.getElementById('adviceContent');
-
-            // Parse the response
             let html = '<div class="card-analysis">';
-
-            // Extract key info
             const lines = analysis.split('\n');
             lines.forEach(line => {
-                if (line.includes('PLAYER CARDS:')) {
-                    html += `<p><strong>🎰 Your Cards:</strong> ${line.replace('PLAYER CARDS:', '').trim()}</p>`;
-                } else if (line.includes('PLAYER TOTAL:')) {
-                    html += `<p><strong>💯 Hand Total:</strong> ${line.replace('PLAYER TOTAL:', '').trim()}</p>`;
-                } else if (line.includes('DEALER UP CARD:')) {
-                    html += `<p><strong>🎲 Dealer Shows:</strong> ${line.replace('DEALER UP CARD:', '').trim()}</p>`;
-                }
+                if (line.includes('PLAYER CARDS:')) html += `<p><strong>🎰 Cards:</strong> ${line.replace('PLAYER CARDS:', '').trim()}</p>`;
+                else if (line.includes('PLAYER TOTAL:')) html += `<p><strong>💯 Total:</strong> ${line.replace('PLAYER TOTAL:', '').trim()}</p>`;
+                else if (line.includes('DEALER UP CARD:')) html += `<p><strong>🎲 Dealer:</strong> ${line.replace('DEALER UP CARD:', '').trim()}</p>`;
             });
             html += '</div>';
-
-            // Highlight recommendation
             if (analysis.includes('HIT')) {
-                html += '<div class="recommendation" style="background: #fef08a; color: #92400e;"><strong>🟘 HIT</strong> - Take another card!</div>';
+                html += '<div class="recommendation" style="background: #fef08a; color: #92400e; font-size: 1.2em;">🟘 HIT - Take another card!</div>';
             } else if (analysis.includes('STAND')) {
-                html += '<div class="recommendation" style="background: #dcfce7; color: #166534;"><strong>✍️ STAND</strong> - Keep your hand!</div>';
+                html += '<div class="recommendation" style="background: #dcfce7; color: #166534; font-size: 1.2em;">✍️ STAND - Keep your hand!</div>';
             }
-
-            // Add reasoning
             if (analysis.includes('REASON:')) {
                 const reason = analysis.substring(analysis.indexOf('REASON:') + 7).trim();
-                html += `<p style="margin-top: 15px; font-size: 0.95em; opacity: 0.9;"><strong>Why:</strong> ${reason}</p>`;
+                html += `<p style="margin-top: 12px; font-size: 0.9em; opacity: 0.9;"><strong>Strategy:</strong> ${reason}</p>`;
             }
-
             adviceContent.innerHTML = html;
             adviceBox.classList.add('show');
         }
